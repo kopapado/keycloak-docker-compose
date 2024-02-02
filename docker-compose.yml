@@ -20,21 +20,38 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:latest
-    command: ["start-dev", "--import-realm"]
+    command: ["start", "--import-realm"]
     restart: unless-stopped
     environment:
+      # Host config
+      KC_HOSTNAME: mykeycloak
+      KC_PROXY: edge
+
+      # TLS config
+      HTTPS_CERTIFICATE_FILE: /opt/keycloak/data/keys/keycloak-server.crt.pem
+      HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/data/keys/keycloak-server.key.pem
+      HTTPS_PORT: 8081
+
+      # DB config
+      KC_DB_URL: "jdbc:postgresql://postgres:5432/keycloak"
       KC_DB: postgres
       KC_DB_USERNAME: keycloak
-      KC_DB_PASSWORD: password
-      KC_DB_URL: "jdbc:postgresql://postgres:5432/keycloak"
-      KC_HEALTH_ENABLED: true
-      KC_METRICS_ENABLED: true
+      KC_DB_PASSWORD: password      
+      
+       # Admin user config
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+
+      # Other
+      KC_HEALTH_ENABLED: true
+      KC_METRICS_ENABLED: true
     ports:
       - 8180:8080
+      - 8081:8081
+      - 8443:8443
     volumes:
       - ./config/:/opt/keycloak/data/import:ro
+      - ./keys/:/opt/keycloak/data/keys:ro
 
   adminer:
     image: adminer
