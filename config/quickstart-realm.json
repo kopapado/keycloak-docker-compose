@@ -27,7 +27,7 @@
   "oauth2DevicePollingInterval" : 5,
   "enabled" : true,
   "sslRequired" : "external",
-  "registrationAllowed" : false,
+  "registrationAllowed" : true,
   "registrationEmailAsUsername" : false,
   "rememberMe" : false,
   "verifyEmail" : false,
@@ -37,6 +37,7 @@
   "editUsernameAllowed" : false,
   "bruteForceProtected" : false,
   "permanentLockout" : false,
+  "maxTemporaryLockouts" : 0,
   "maxFailureWaitSeconds" : 900,
   "minimumQuickLoginWaitSeconds" : 60,
   "waitIncrementSeconds" : 60,
@@ -1328,7 +1329,20 @@
     "xXSSProtection" : "1; mode=block",
     "strictTransportSecurity" : "max-age=31536000; includeSubDomains"
   },
-  "smtpServer" : { },
+  "smtpServer" : {
+    "replyToDisplayName" : "",
+    "starttls" : "true",
+    "auth" : "true",
+    "envelopeFrom" : "",
+    "ssl" : "false",
+    "password" : "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",
+    "port" : "587",
+    "host" : "smtp.sendgrid.net",
+    "replyTo" : "",
+    "from" : "kcadm.awls@gmail.com",
+    "fromDisplayName" : "Keycloak Admin",
+    "user" : "apikey"
+  },
   "eventsEnabled" : false,
   "eventsListeners" : [ "jboss-logging" ],
   "enabledEventTypes" : [ ],
@@ -1379,7 +1393,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-full-name-mapper", "saml-user-attribute-mapper", "oidc-address-mapper", "oidc-usermodel-attribute-mapper", "saml-role-list-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-usermodel-property-mapper", "saml-user-property-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-address-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-property-mapper", "oidc-usermodel-property-mapper", "saml-role-list-mapper", "saml-user-attribute-mapper", "oidc-usermodel-attribute-mapper", "oidc-full-name-mapper" ]
       }
     }, {
       "id" : "71e44561-7c00-456a-909b-ab3f4c245316",
@@ -1404,7 +1418,15 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "saml-role-list-mapper", "saml-user-property-mapper", "oidc-usermodel-property-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-usermodel-attribute-mapper", "saml-user-attribute-mapper", "oidc-full-name-mapper", "oidc-address-mapper" ]
+        "allowed-protocol-mapper-types" : [ "saml-user-property-mapper", "saml-role-list-mapper", "saml-user-attribute-mapper", "oidc-full-name-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-usermodel-attribute-mapper", "oidc-address-mapper", "oidc-usermodel-property-mapper" ]
+      }
+    } ],
+    "org.keycloak.userprofile.UserProfileProvider" : [ {
+      "id" : "85dad93f-9d30-41a8-80df-e559b5f2ea19",
+      "providerId" : "declarative-user-profile",
+      "subComponents" : { },
+      "config" : {
+        "kc.user.profile.config" : [ "{\"attributes\":[{\"name\":\"username\",\"displayName\":\"${username}\",\"validations\":{\"length\":{\"min\":3,\"max\":255},\"username-prohibited-characters\":{},\"up-username-not-idn-homograph\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"email\",\"displayName\":\"${email}\",\"validations\":{\"email\":{},\"length\":{\"max\":255}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"firstName\",\"displayName\":\"${firstName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"lastName\",\"displayName\":\"${lastName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false}],\"groups\":[{\"name\":\"user-metadata\",\"displayHeader\":\"User metadata\",\"displayDescription\":\"Attributes, which refer to user metadata\"}],\"unmanagedAttributePolicy\":\"ENABLED\"}" ]
       }
     } ],
     "org.keycloak.keys.KeyProvider" : [ {
@@ -1417,6 +1439,17 @@
         "keyUse" : [ "SIG" ],
         "certificate" : [ "MIICozCCAYsCBgGNXrK0JjANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDDApxdWlja3N0YXJ0MB4XDTI0MDEzMTA4NDQ0NloXDTM0MDEzMTA4NDYyNlowFTETMBEGA1UEAwwKcXVpY2tzdGFydDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKiuEPJr4ZZtAu8nTmGhhFhdiNoRIJZR94FnrgUtAQIM8c9VhnSzvWfqGR1HxGwH+eAOU3WxIQ5hx9aBjWfu3U4yhxKxHHVGR/awKoanjF3t8MiAxXOMpuxGQQk+7RRsyrVTGhJfzSh6gcGPKreo3vNTU6NJaigcGtgsy28IxtCO4IUNrUrhdf4bySNkrdLt3z9AtC1sr3StZ9477coAhoJmvB85WfgiGMUHCi3JXpR2L6DbtgCCA/uJ596lcKhAFXq7ABO2HSCiOxO7/JIFChWXcub5sZB4yDOxe8zn5ErHEbKONzwtvFp7jegaijzsbuFam4QdbXpfZCjCOK+nEwUCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAarmbR9vHFFChPPLacHcRexhPTJDZgLaelej09SCY+9iH+E53dZhfw0a1ltch3kIS+jrkgWhQTGE5Kik3WYo+1McEpHSZBSIRATwfy774evszuyGqMj0n1ANdvTSd3UEAGLFWg9mVNSN98RASwOr3rA88x7bhhDydFBUExNI/ioQZdMKREgyOzQfURprxH3s/3razs6XJme7yEevtLOmm9Kon2AI7cUh0G4a3418xlkL/FMwXfIesTGvLWM1Ltf3aOePJrmfSOe9aIq+6uLhcR3+QOXDAwDU8XggDMG03VNAqbYWECDijNV7z0WK0fMETxBrP4O6Co/eENXzgh/Y9Gw==" ],
         "priority" : [ "100" ]
+      }
+    }, {
+      "id" : "822a2c86-d7e6-4e9b-818e-3346eaa2cd74",
+      "name" : "hmac-generated-hs512",
+      "providerId" : "hmac-generated",
+      "subComponents" : { },
+      "config" : {
+        "kid" : [ "fb6e7e0f-b12f-4ba3-9e07-c95d17e6f979" ],
+        "secret" : [ "dZoZsGradGvV9E7DUwDsfus3HPDqHVoYqfW59TOhVsGQK5y_d2M7fhwd7uarrl3z1uLt0TAikfh86PYjQ6sdmGl95SPe69aBXTQDeyNIOdcCbxSqLjnFISm737eEVhTFz14megaqA646q7KNm0tSynFEr9lKWyDYIyEvrFv8LIc" ],
+        "priority" : [ "100" ],
+        "algorithm" : [ "HS512" ]
       }
     }, {
       "id" : "dcb26920-7ac9-4708-97a5-e6a04df13b6b",
@@ -1446,8 +1479,8 @@
       "providerId" : "hmac-generated",
       "subComponents" : { },
       "config" : {
-        "kid" : [ "5fc00e7b-b341-40c3-908d-1b90ea23efa1" ],
-        "secret" : [ "VMb9W4GD1a0qUfndQ6shHcUhhx0HLUfWIzoufNeZRPj4TovWi2MNpuhykQ0MKWM6cQYfxrmrSHRb0oG8rvixgA" ],
+        "kid" : [ "c1df2211-5271-4469-bdf5-ef46210590b8" ],
+        "secret" : [ "FKlJYf-uoczEJOS07GdbLjnV93KgzOyRPU64aTABfghG3_soDHZgGHMvU30pKVZBto0W5ZDJ89NCeAS1TFko90romUT0KsIKHsmwx3gmK1Zs_LKJorhkmBnHKtXC7Pzk933JTJq0HJ5JhUWsfdQotGqgBbn18Xhnq7gZ6pc-ED0" ],
         "priority" : [ "100" ],
         "algorithm" : [ "HS256" ]
       }
@@ -1968,6 +2001,14 @@
     "priority" : 80,
     "config" : { }
   }, {
+    "alias" : "delete_credential",
+    "name" : "Delete Credential",
+    "providerId" : "delete_credential",
+    "enabled" : true,
+    "defaultAction" : false,
+    "priority" : 100,
+    "config" : { }
+  }, {
     "alias" : "update_user_locale",
     "name" : "Update User Locale",
     "providerId" : "update_user_locale",
@@ -1982,6 +2023,7 @@
   "resetCredentialsFlow" : "reset credentials",
   "clientAuthenticationFlow" : "clients",
   "dockerAuthenticationFlow" : "docker auth",
+  "firstBrokerLoginFlow" : "first broker login",
   "attributes" : {
     "cibaBackchannelTokenDeliveryMode" : "poll",
     "cibaExpiresIn" : "120",
@@ -1996,7 +2038,7 @@
     "cibaInterval" : "5",
     "realmReusableOtpCode" : "false"
   },
-  "keycloakVersion" : "23.0.5",
+  "keycloakVersion" : "24.0.4",
   "userManagedAccessAllowed" : false,
   "clientProfiles" : {
     "profiles" : [ ]

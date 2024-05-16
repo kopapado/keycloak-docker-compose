@@ -3,9 +3,9 @@
   "users" : [ {
     "id" : "7e8217e6-cdfd-4e55-806d-e85c1cfce212",
     "username" : "alice",
+    "emailVerified" : false,
     "enabled" : true,
     "totp" : false,
-    "emailVerified" : false,
     "credentials" : [ {
       "id" : "78c28525-debe-47b4-8341-f6d80d11bd90",
       "type" : "password",
@@ -21,9 +21,9 @@
   }, {
     "id" : "93b2c57e-d9ae-47d1-a66f-2e593742031a",
     "username" : "jdoe",
+    "emailVerified" : false,
     "enabled" : true,
     "totp" : false,
-    "emailVerified" : false,
     "credentials" : [ {
       "id" : "484e4382-55c3-4939-b9df-8d9306963e6a",
       "type" : "password",
@@ -37,11 +37,27 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
-    "id" : "43a249da-f0d1-4d63-81cd-1b112f7cc622",
-    "username" : "service-account-authz-servlet",
+    "id" : "ff3f2832-9876-47d1-8cb8-3b5fbf283c46",
+    "username" : "kcusr.awls@gmail.com",
+    "firstName" : "Keycloak",
+    "lastName" : "User",
+    "email" : "kcusr.awls@gmail.com",
+    "emailVerified" : false,
+    "createdTimestamp" : 1715867418432,
     "enabled" : true,
     "totp" : false,
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-quickstart" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "43a249da-f0d1-4d63-81cd-1b112f7cc622",
+    "username" : "service-account-authz-servlet",
     "emailVerified" : false,
+    "enabled" : true,
+    "totp" : false,
     "serviceAccountClientId" : "authz-servlet",
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
