@@ -1,0 +1,48 @@
+{
+  "realm" : "master",
+  "users" : [ {
+    "id" : "bc2517d6-3372-48c9-9bdf-ae305f434acb",
+    "username" : "admin",
+    "email" : "kcadm.awls@gmail.com",
+    "emailVerified" : true,
+    "createdTimestamp" : 1715926709502,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "3ccc9486-9eee-4f33-b312-31b72ef07fe0",
+      "type" : "password",
+      "createdDate" : 1715926709711,
+      "secretData" : "{\"value\":\"INURmMUqBTU4FPNt6aCMFv3MWneAK2KpBFlzoAjqcVnEETbbrWVf2pqVGso6OvkPnHUTyvx66xV2uVAbKtMsMQ==\",\"salt\":\"a8maGnFmxWNWR8MN4z82vw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":210000,\"algorithm\":\"pbkdf2-sha512\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-master", "admin" ],
+    "clientRoles" : {
+      "genesis-realm" : [ "view-authorization", "manage-events", "query-users", "view-events", "manage-users", "query-groups", "view-clients", "manage-identity-providers", "query-realms", "query-clients", "manage-authorization", "manage-realm", "view-realm", "manage-clients", "view-identity-providers", "create-client", "view-users" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "7e19bc56-6e82-414b-bf05-90085e9a79ee",
+    "username" : "service-account-genesis-pam",
+    "emailVerified" : false,
+    "createdTimestamp" : 1715926856258,
+    "enabled" : true,
+    "totp" : false,
+    "serviceAccountClientId" : "genesis-pam",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-master" ],
+    "clientRoles" : {
+      "genesis-realm" : [ "view-events", "query-realms", "query-clients", "manage-realm", "view-users", "create-client", "view-authorization", "manage-identity-providers", "manage-clients", "manage-users", "manage-authorization", "view-realm", "query-users", "manage-events", "query-groups", "view-clients", "view-identity-providers", "impersonation" ],
+      "master-realm" : [ "query-users", "view-authorization", "manage-realm", "manage-users", "manage-authorization", "manage-events", "impersonation", "view-events", "view-realm", "query-clients", "view-clients", "view-users", "view-identity-providers", "manage-clients", "query-realms", "manage-identity-providers", "create-client", "query-groups" ],
+      "broker" : [ "read-token" ],
+      "account" : [ "view-applications", "manage-account-links", "delete-account", "view-groups", "view-profile", "manage-account", "view-consent", "manage-consent" ],
+      "quickstart-realm" : [ "manage-users", "manage-clients", "query-realms", "query-clients", "query-users", "manage-identity-providers", "view-users", "manage-events", "manage-realm", "view-identity-providers", "impersonation", "view-realm", "view-clients", "query-groups", "create-client", "view-events", "view-authorization", "manage-authorization" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  } ]
+}
