@@ -16,7 +16,7 @@ services:
         tmpfs:
           size: 100000000
     ports:
-      - 5432:5432
+      - 5433:5432
 
   keycloak:
     image: quay.io/keycloak/keycloak:latest
