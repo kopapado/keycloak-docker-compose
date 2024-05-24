@@ -1,0 +1,46 @@
+{
+  "realm" : "genesis",
+  "users" : [ {
+    "id" : "6911a620-f731-4d96-aa83-a7fb35389dcc",
+    "username" : "kcusr.awls@gmail.com",
+    "firstName" : "Keycloak",
+    "lastName" : "User",
+    "email" : "kcusr.awls@gmail.com",
+    "emailVerified" : true,
+    "attributes" : {
+      "playerId" : [ "123" ]
+    },
+    "createdTimestamp" : 1716546389973,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "9d7c06e4-8d87-4d74-aa4c-0a89d35837f1",
+      "type" : "password",
+      "createdDate" : 1716546390160,
+      "secretData" : "{\"value\":\"vrOd3vAPKZiGEaK2SPdjlOEDF9i694HXiai0y15v04C+7cX4cQNAPFqYVMT1VUxQIYY/62Ia5k73xkLnyoVVPg==\",\"salt\":\"JLnqf0oW0hZEzxItaB2+Qw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":210000,\"algorithm\":\"pbkdf2-sha512\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-genesis" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "03dac362-1fbe-47f5-b506-2679f3bc9936",
+    "username" : "service-account-genesis-pam",
+    "emailVerified" : false,
+    "createdTimestamp" : 1716546039264,
+    "enabled" : true,
+    "totp" : false,
+    "serviceAccountClientId" : "genesis-pam",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-genesis" ],
+    "clientRoles" : {
+      "realm-management" : [ "manage-users" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  } ]
+}
